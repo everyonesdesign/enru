@@ -61,4 +61,4 @@ if title:
 
 # nothing found
 else:
-    colored("Ничего не найдено", "red")
+    print(colored("Ничего не найдено", "red"))
