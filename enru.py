@@ -10,7 +10,7 @@ from bs4 import BeautifulSoup
 # get basic info
 word = sys.argv[1]
 base = "https://slovari.yandex.ru/"
-tail = "{word}/%D0%BF%D0%B5%D1%80%D0%B5%D0%B2%D0%BE%D0%B4/".format(word=word)
+tail = "{word}/перевод/".format(word=word)
 url = base + tail
 
 #fetch
