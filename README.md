@@ -7,7 +7,7 @@ Parses Ya.Dictionary service to get the translation
 
 ```bash
 $ chmod +x install.sh
-$ ./install.sh # probably will require sudo
+$ ./install.sh
 ```
 
 ## Usage
