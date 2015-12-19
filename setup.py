@@ -10,7 +10,11 @@ setup(
     author_email='tr.yura@yahoo.com',
     license='MIT',
     url='https://github.com/everyonesdesign/enru-python/',
-    scripts=['enru.sh'],
+    entry_points={
+        'console_scripts': [
+            'enru = init',
+        ],
+    },
     install_requires=[
         'lxml',
         'beautifulsoup4==4.4.1',
