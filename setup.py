@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from distutils.core import setup
+from setuptools import setup, find_packages
 
 setup(
     name='enru',
@@ -8,9 +8,11 @@ setup(
     description='Yandex.Dictionary translation parser',
     author='Yura Trambitskiy',
     author_email='tr.yura@yahoo.com',
+    license='MIT',
     url='https://github.com/everyonesdesign/enru-python/',
-    py_modules=['enru'],
-    requires=[
+    scripts=['enru.sh'],
+    install_requires=[
+        'lxml',
         'beautifulsoup4==4.4.1',
         'termcolor==1.1.0',
     ],
