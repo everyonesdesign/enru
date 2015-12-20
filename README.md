@@ -6,8 +6,7 @@ Parses Ya.Dictionary service to get the translation
 ## Installation
 
 ```bash
-$ chmod +x install.sh
-$ ./install.sh
+$ python setup.py install
 ```
 
 ## Usage
