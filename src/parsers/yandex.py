@@ -1,7 +1,10 @@
 #coding=utf-8
 from termcolor import colored
 
-class YandexParser:
+from abstract import AbstractParser
+
+
+class YandexParser(AbstractParser):
     def get_url(self, word):
         base = "https://slovari.yandex.ru/"
         tail = "{word}/перевод/".format(word=word)
