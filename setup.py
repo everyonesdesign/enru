@@ -12,9 +12,10 @@ setup(
     url='https://github.com/everyonesdesign/enru-python/',
     entry_points={
         'console_scripts': [
-            'enru = init',
+            'enru=init:main',
         ],
     },
+    py_modules=['init'],
     install_requires=[
         'lxml',
         'beautifulsoup4==4.4.1',
