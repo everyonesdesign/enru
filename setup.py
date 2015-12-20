@@ -5,7 +5,7 @@ from setuptools import setup, find_packages
 setup(
     name='enru',
     version='1.0',
-    description='Yandex.Dictionary translation parser',
+    description='Simple dictionaries translation parser',
     author='Yura Trambitskiy',
     author_email='tr.yura@yahoo.com',
     license='MIT',
@@ -18,6 +18,7 @@ setup(
     py_modules=['init'],
     install_requires=[
         'lxml',
+        'Click',
         'beautifulsoup4==4.4.1',
         'termcolor==1.1.0',
     ],

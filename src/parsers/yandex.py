@@ -10,7 +10,7 @@ class YandexParser(AbstractParser):
         tail = "{word}/перевод/".format(word=word)
         return base + tail
 
-    def get_content(self, soup):
+    def get_content(self, soup, show_examples):
         title = soup.find(class_="b-translation__title")
 
         # word exists
@@ -33,10 +33,10 @@ class YandexParser(AbstractParser):
                 self.print_tag(group_title, color="yellow")
                 self.print_tag(translation)
 
-                # TODO: make examples optional
-                # for example in examples:
-                #     example.find(class_="b-translation__src-num").extract()
-                #     self.print_tag(example)
+                if show_examples:
+                    for example in examples:
+                        example.find(class_="b-translation__src-num").extract()
+                        self.print_tag(example, color='green')
 
                 self.add_space()
 
