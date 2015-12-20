@@ -16,6 +16,7 @@ setup(
         ],
     },
     py_modules=['init'],
+    packages=find_packages(),
     install_requires=[
         'lxml',
         'Click',
