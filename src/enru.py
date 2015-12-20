@@ -8,8 +8,6 @@ class Enru:
         self.parser = parser
 
     def run(self, word, show_examples):
-        # TODO: throw error if there's no word
-
         url = self.get_url(word)
         markup = self.fetch(url)
         content = self.parse(markup, show_examples)
