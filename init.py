@@ -16,8 +16,6 @@ def main(word, show_examples):
     parser = YandexParser()
     enru = Enru(parser)
     content = enru.run(word, show_examples)
-    content
-
 
 if __name__ == "__main__":
     main()
