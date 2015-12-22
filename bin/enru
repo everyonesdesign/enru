@@ -1,4 +1,6 @@
 #!/usr/bin/env python
+import pydoc
+
 import click
 
 from src.enru import Enru
@@ -16,7 +18,7 @@ def main(word, show_examples):
     parser = YandexParser()
     enru = Enru(parser)
     content = enru.run(word, show_examples)
-    print(content)
+    pydoc.pipepager(content, cmd='less -R')
 
 if __name__ == "__main__":
     main()
