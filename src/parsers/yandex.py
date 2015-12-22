@@ -2,6 +2,7 @@
 from termcolor import colored
 
 from abstract import AbstractParser
+from ..enru import NothingFoundException
 
 
 class YandexParser(AbstractParser):
@@ -29,7 +30,7 @@ class YandexParser(AbstractParser):
 
         # nothing found
         else:
-            print(colored("Ничего не найдено", "red"))
+            raise NothingFoundException()
 
         return content
 

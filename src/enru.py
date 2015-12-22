@@ -10,7 +10,13 @@ class Enru:
     def run(self, word, show_examples):
         url = self.get_url(word)
         markup = self.fetch(url)
-        content = self.parse(markup, show_examples)
+
+        try:
+            content = self.parse(markup, show_examples)
+        except NothingFoundException:
+            # TODO: add name of dictionary here
+            content = "Слово «{word}» не найдено".format(word=word)
+
         return content
 
     def fetch(self, url):
@@ -22,3 +28,7 @@ class Enru:
 
     def get_url(self, word):
         return self.parser.get_url(word)
+
+
+class NothingFoundException(Exception):
+    pass
