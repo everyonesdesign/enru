@@ -10,11 +10,7 @@ setup(
     author_email='tr.yura@yahoo.com',
     license='MIT',
     url='https://github.com/everyonesdesign/enru-python/',
-    entry_points={
-        'console_scripts': [
-            'enru=init:main',
-        ],
-    },
+    scripts=['bin/enru'],
     py_modules=['init'],
     packages=find_packages(),
     install_requires=[
