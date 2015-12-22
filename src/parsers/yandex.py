@@ -11,6 +11,7 @@ class YandexParser(AbstractParser):
         return base + tail
 
     def get_content(self, soup, show_examples):
+        content = ""
         title = soup.find(class_="b-translation__title")
 
         # word exists
@@ -20,39 +21,49 @@ class YandexParser(AbstractParser):
 
             groups = soup.select(".b-translation__group")
 
-            self.print_tag(title_word, attrs=["bold"])
-            self.print_tag(title_pronunciation, color="blue")
+            content += self.get_tag(title_word, attrs=["bold"])
+            content += self.get_tag(title_pronunciation, color="blue")
 
-            self.add_space()
-            
             for group in groups:
-                group_title = group.find(class_="b-translation__group-title")
-                translation = group.find(class_="b-translation__translation-words")
-                examples = group.find_all(class_="b-translation__example")
-
-                self.print_tag(group_title, color="yellow")
-                self.print_tag(translation)
-
-                if show_examples:
-                    for example in examples:
-                        example.find(class_="b-translation__src-num").extract()
-                        self.print_tag(example, color='green')
-
-                self.add_space()
+                content += self.process_group(group, show_examples)
 
         # nothing found
         else:
             print(colored("Ничего не найдено", "red"))
 
-    # print
-    def print_tag(self, tag, color=None, attrs=[]):
+        return content
+
+    def process_group(self, group, show_examples):
+        content = self.get_space()
+
+        group_title = group.find(class_="b-translation__group-title")
+        translation = group.find(class_="b-translation__translation-words")
+        examples = group.find_all(class_="b-translation__example")
+
+        if group_title:
+            content += self.get_tag(group_title, color="yellow")
+        if translation:
+            content += self.get_tag(translation)
+
+        if show_examples:
+            for example in examples:
+                example.find(class_="b-translation__src-num").extract()
+                self.get_tag(example, color='green')
+
+        return content
+
+    def get_tag(self, tag, color=None, attrs=[]):
+        result = ""
+
         if tag:
             text = tag.get_text().encode("utf-8")
             if color or attrs:
-                print(colored(text, color=color, attrs=attrs))
+                result = colored(text, color=color, attrs=attrs)
             else:
-                print(text)
+                result = text
 
-    def add_space(self):
-        print("")
+        result += self.get_space()
+        return result
 
+    def get_space(self):
+        return "\n"
