@@ -3,15 +3,15 @@ import pydoc
 
 import click
 
-from src.enru import Enru
-from src.parsers.yandex import YandexParser
+from enru.enru import Enru
+from enru.parsers.yandex import YandexParser
 
 
 @click.command()
 @click.argument('word')
-@click.option('--show-examples', '-e', 
+@click.option('--show-examples', '-e',
               is_flag=True,
-              default=False, 
+              default=False,
               help='Show word usage examples')
 def main(word, show_examples):
     """Simple dictionaries translation parser"""
