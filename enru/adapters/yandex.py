@@ -13,7 +13,7 @@ class YandexAdapter(BaseAdapter):
                         word=word)
         return base + tail
 
-    def get_content(self, soup, **kwargs):
+    def get_content(self, soup):
         content = ""
         title = soup.find(class_="b-translation__title")
 
@@ -36,7 +36,7 @@ class YandexAdapter(BaseAdapter):
 
         return content
 
-    def process_group(self, group, **kwargs):
+    def process_group(self, group):
         content = self.get_space()
 
         group_title = group.find(class_="b-translation__group-title")

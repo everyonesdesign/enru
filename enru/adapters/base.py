@@ -7,7 +7,7 @@ from ..exceptions import NothingFoundException
 
 class BaseAdapter:
     # template method for adapter launch
-    def run(self, word, **kwargs):
+    def run(self, word):
         url = self.get_url(quote(word))
         markup = self.fetch(url)
 
@@ -21,7 +21,7 @@ class BaseAdapter:
     def fetch(self, url):
         return request.urlopen(url)
 
-    def parse(self, markup, **kwargs):
+    def parse(self, markup):
         soup = BeautifulSoup(markup, "lxml")
         return self.get_content(soup)
 
@@ -29,5 +29,5 @@ class BaseAdapter:
     def get_url(self, word):
         raise NotImplementedError
 
-    def get_content(self, soup, **kwargs):
+    def get_content(self, soup):
         raise NotImplementedError

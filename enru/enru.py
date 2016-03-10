@@ -2,5 +2,5 @@ class Enru:
     def __init__(self, parser):
         self.parser = parser
 
-    def run(self, word, **kwargs):
+    def run(self, word):
         return self.parser.run(word)
