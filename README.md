@@ -4,9 +4,10 @@ A better realization of [enru script](https://github.com/everyonesdesign/enru), 
 Parses Ya.Dictionary service to get the translation
 
 ## Installation
+`enru` requires Python 3
 
 ```bash
-$ python setup.py install
+$ python3 setup.py install
 ```
 
 ## Usage
