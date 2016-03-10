@@ -1,0 +1,2 @@
+class NothingFoundException(Exception):
+    pass
