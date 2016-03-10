@@ -9,7 +9,7 @@ setup(
     author='Yura Trambitskiy',
     author_email='tr.yura@yahoo.com',
     license='MIT',
-    url='https://github.com/everyonesdesign/enru-python/',
+    url='https://github.com/everyonesdesign/enru/',
     scripts=['bin/enru'],
     py_modules=['init'],
     packages=find_packages(),
