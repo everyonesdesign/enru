@@ -1,17 +1,19 @@
-#coding=utf-8
+from urllib.parse import quote
+
 from termcolor import colored
 
-from abstract import AbstractParser
-from ..enru import NothingFoundException
+from .base import BaseAdapter
+from ..exceptions import NothingFoundException
 
 
-class YandexParser(AbstractParser):
+class YandexAdapter(BaseAdapter):
     def get_url(self, word):
         base = "https://slovari.yandex.ru/"
-        tail = "{word}/перевод/".format(word=word)
+        tail = "{word}/%D0%BF%D0%B5%D1%80%D0%B5%D0%B2%D0%BE%D0%B4/".format(
+                        word=word)
         return base + tail
 
-    def get_content(self, soup, show_examples):
+    def get_content(self, soup, **kwargs):
         content = ""
         title = soup.find(class_="b-translation__title")
 
@@ -26,7 +28,7 @@ class YandexParser(AbstractParser):
             content += self.get_tag(title_pronunciation, color="blue")
 
             for group in groups:
-                content += self.process_group(group, show_examples)
+                content += self.process_group(group)
 
         # nothing found
         else:
@@ -34,7 +36,7 @@ class YandexParser(AbstractParser):
 
         return content
 
-    def process_group(self, group, show_examples):
+    def process_group(self, group, **kwargs):
         content = self.get_space()
 
         group_title = group.find(class_="b-translation__group-title")
@@ -46,7 +48,7 @@ class YandexParser(AbstractParser):
         if translation:
             content += self.get_tag(translation)
 
-        if show_examples:
+        if "show_examples" in kwargs:
             for example in examples:
                 example.find(class_="b-translation__src-num").extract()
                 self.get_tag(example, color='green')
@@ -57,7 +59,7 @@ class YandexParser(AbstractParser):
         result = ""
 
         if tag:
-            text = tag.get_text().encode("utf-8")
+            text = tag.get_text()
             if color or attrs:
                 result = colored(text, color=color, attrs=attrs)
             else:
