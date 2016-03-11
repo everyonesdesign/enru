@@ -5,6 +5,8 @@ A better realization of [enru script](https://github.com/everyonesdesign/enru-ru
 
 Parses Ya.Dictionary service to get the translation
 
+!![enru](http://i.imgur.com/GTMKsbd.png)
+
 ## Installation
 `enru` requires Python 3
 
