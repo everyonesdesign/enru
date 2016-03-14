@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='enru',
-    version='1.0',
+    version='1.1',
     description='Simple dictionaries translation parser',
     author='Yura Trambitskiy',
     author_email='tr.yura@yahoo.com',
