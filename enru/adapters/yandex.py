@@ -25,7 +25,7 @@ class YandexAdapter(BaseAdapter):
             title_word = title.find(class_="b-translation__text")
             title_pronunciation = title.find(class_="b-translation__tr")
 
-            groups = soup.select(".b-translation__group")
+            groups = soup.find_all(class_="b-translation__group")
 
             content += self.get_tag(title_word, attrs=["bold"])
             content += self.get_tag(title_pronunciation, color="blue")
@@ -43,18 +43,23 @@ class YandexAdapter(BaseAdapter):
         content = self.get_space()
 
         group_title = group.find(class_="b-translation__group-title")
-        translation = group.find(class_="b-translation__translation-words")
-        examples = group.find_all(class_="b-translation__example")
-
         if group_title:
             content += self.get_tag(group_title, color="yellow")
-        if translation:
-            content += self.get_tag(translation)
 
-        if self.show_examples:
-            for example in examples:
-                example.find(class_="b-translation__src-num").extract()
-                content += self.get_tag(example, color='green')
+        entries = group.find_all(class_="b-translation__entry")
+
+        for entry in entries:
+            translation = entry.find(class_="b-translation__translation-words")
+            examples = entry.find_all(class_="b-translation__example")
+
+            if translation:
+                content += self.get_tag(translation)
+
+            if self.show_examples:
+                for example in examples:
+                    example.find(class_="b-translation__src-num").extract()
+                    content += self.get_tag(example, color='green')
+                content += self.get_space()
 
         return content
 
