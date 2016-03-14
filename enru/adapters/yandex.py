@@ -8,8 +8,7 @@ from ..exceptions import NothingFoundException
 
 class YandexAdapter(BaseAdapter):
     def __init__(self, **kwargs):
-        # show results in succinct way
-        self.short_mode = kwargs["short_mode"]
+        self.show_examples = kwargs["show_examples"]
 
     def get_url(self, word):
         base = "https://slovari.yandex.ru/"
@@ -52,7 +51,7 @@ class YandexAdapter(BaseAdapter):
         if translation:
             content += self.get_tag(translation)
 
-        if not self.short_mode:
+        if self.show_examples:
             for example in examples:
                 example.find(class_="b-translation__src-num").extract()
                 content += self.get_tag(example, color='green')

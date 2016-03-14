@@ -9,13 +9,13 @@ from enru.adapters.yandex import YandexAdapter
 
 @click.command()
 @click.argument('word')
-@click.option('--short', '-s',
+@click.option('--show-examples', '-e',
               is_flag=True,
               default=False,
-              help='Show results in short form')
-def main(word, short):
+              help='Show word usages examples')
+def main(word, show_examples):
     """Simple dictionaries translation parser"""
-    parser = YandexAdapter(short_mode=short)
+    parser = YandexAdapter(show_examples=show_examples)
     enru = Enru(parser)
     content = enru.run(word)
     pydoc.pipepager(content, cmd='less -R')
